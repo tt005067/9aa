@@ -30,4 +30,4 @@ runs:
       shell: bash
     - name: Log of cache Status
       shell: bash
-      run: echo "Caching is ${{ inputs.caching }}"
+      run: echo "Caching is " ${{ inputs.caching }}
