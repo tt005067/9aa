@@ -11,8 +11,11 @@ jobs:
         uses: actions/checkout@v3
       - name: Load & cach depandencies
         uses: ./.github/actions/cached-deps
+        id: cache-deps
         with:
-          caching: 'false' ## and pass and fill the input , ofcourse as we defined default value , we can try not to fill it
+          caching: 'false'
+      - name:
+        run: echo "Cache used? ${{steps.cache-deps.outputs.used-cache}}" #| and as we know to get output , we set id in the step, and get the result of it
       - name: Lint code
         run: npm run lint
   test:
