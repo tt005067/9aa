@@ -80,3 +80,15 @@ jobs:
         run: ls
       - name: Deploy site
         run: echo "Deploying..."
+#? we have 3 kind of actions for creation
+# * javascript Action , docker Action and Composite Action
+
+#* JavaScript actions are simply actions where you write the logic of the action in JavaScript,so you define JavaScript code in a JavaScript file and that file will be executed whenever your action runs.
+#* Execute a JavaScript file ,Use JavaScript (NodeJS),any packages of your choice ,Pretty straightforward (if you know JavaScript)
+
+#! A Docker action is basically a containerized action,so an application that you put into a container just as you could put jobs or services into containers earlier,and you build such a Docker action by defining a Dockerfile which simply configures how the image for this action container will be built and configured and then that Dockerfile will be used by GitHub to build a container based on the image defined by your Dockerfile
+
+#! Create a Dockerfile with your required configuration ,Perform any task(s) of your choice with any language, Lots of flexibility but requires Docker knowledge
+
+# # And the idea behind composite actions is that you don't write any code with any programming language but instead you combine multiple Workflow steps as you could have written them directly in the Workflow file itself as well in one single action.
+# #  Combine multiple Workflow Steps in one single Action, Combine run (commands) and uses (Actions) ,Allows for reusing shared Steps (without extra skills)
