@@ -1,7 +1,7 @@
-name: 'Get & Cache Depandencies'
-description: 'get the depandencies (via npm) and cache them'
+name: 'Get & Cache Dependencies'
+description: 'get the dependencies (via npm) and cache them'
 runs:
-  using: 'composite'
+  using: 'composite' #| we should set this as composite , it's fixed and steady
   steps:
     - name: Cache dependencies
       id: cache
