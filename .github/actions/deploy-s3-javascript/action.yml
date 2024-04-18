@@ -1,8 +1,20 @@
 name: 'Deploy to AWS S3'
 description: 'Deploy a static website via AWS S3'
+# ?  add needed inputs
+inputs:
+  bucket:
+    description: 'The S3 Bucket name'
+    required: true
+  bucket-region:
+    description: 'The region of S3 Bucket'
+    required: false
+    default: 'us-east-1'
+  dist-folder:
+    description: 'The folder containing the deployable files'
+    required: true
+
 runs:
-  using: 'node20' #| identifier to specify this is js custom action :more info below link
-  main: 'main.js' # *  GitHub Actions will do then is it will execute that main.js file and therefore execute all the logic that might be in that file whenever this custom action is used in a Workflow step.
-  # pre:
-  #post: we cans et these props ex clean before or after
-# * https://docs.github.com/en/actions/creating-actions/metadata-syntax-for-github-actions#runs-for-javascript-actions
+  using: 'node20'
+  main: 'main.js'
+# which should simply be the path to the folder that contains the files that should be uploaded to that bucket,So the website-files in our case.
+# after defining inputs now we have to use then into the main.js
