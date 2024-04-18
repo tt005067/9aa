@@ -10,8 +10,9 @@ jobs:
       - name: Get code
         uses: actions/checkout@v3
       - name: Load & cach depandencies
-        uses: ./.github/actions/cached-deps # * the value of this  depends on where your custom action is stored.If you did create your action as a standalone GitHub Repository,you would simply add your Repository Identifier here.For example, tt005067/my-action,if my GitHub Repository name would be my action and this would be my account name.but for local we do like this
-
+        uses: ./.github/actions/cached-deps
+        with:
+          caching: 'false' ## and pass and fill the input , ofcourse as we defined default value , we can try not to fill it
       - name: Lint code
         run: npm run lint
   test:
@@ -61,20 +62,3 @@ jobs:
       - name: Deploy site
         run: echo "Deploying..."
 ##
-
-#? we have 3 kind of actions for creation
-# * javascript Action , docker Action and Composite Action
-
-#* JavaScript actions are simply actions where you write the logic of the action in JavaScript,so you define JavaScript code in a JavaScript file and that file will be executed whenever your action runs.
-#* Execute a JavaScript file ,Use JavaScript (NodeJS),any packages of your choice ,Pretty straightforward (if you know JavaScript)
-
-#! A Docker action is basically a containerized action,so an application that you put into a container just as you could put jobs or services into containers earlier,and you build such a Docker action by defining a Dockerfile which simply configures how the image for this action container will be built and configured and then that Dockerfile will be used by GitHub to build a container based on the image defined by your Dockerfile
-
-#! Create a Dockerfile with your required configuration ,Perform any task(s) of your choice with any language, Lots of flexibility but requires Docker knowledge
-
-# # And the idea behind composite actions is that you don't write any code with any programming language but instead you combine multiple Workflow steps as you could have written them directly in the Workflow file itself as well in one single action.
-# #  Combine multiple Workflow Steps in one single Action, Combine run (commands) and uses (Actions) ,Allows for reusing shared Steps (without extra skills)
-
-##
-
-#* as we want to use composite action in this proj so we make a actions folder in this repor and go on, but if we want to use in int other project and make stand alone action we need to create a separated repository for that.

@@ -1,17 +1,24 @@
 name: 'Get & Cache Dependencies'
 description: 'get the dependencies (via npm) and cache them'
+inputs: #* define inputs
+  caching: #* could be anything , the name of input
+    description: 'Whether to cache dependencies or not'
+    required: false
+    default: 'true'
+# abc :          we can add inputs as many
+# description :
+
 runs:
-  using: 'composite' #| we should set this as composite , it's fixed and steady
+  using: 'composite'
   steps:
     - name: Cache dependencies
+      if: inputs.caching == 'true' #| check the input is true or false
       id: cache
       uses: actions/cache@v3
       with:
         path: node_modules
         key: deps-node-modules-${{ hashFiles('**/package-lock.json') }}
     - name: Install dependencies
-      if: steps.cache.outputs.cache-hit != 'true'
+      if: steps.cache.outputs.cache-hit != 'true' || inputs.caching != 'true'
       run: npm ci
       shell: bash
-# * in custom actions we dont have and use on!
-# * https://docs.github.com/en/actions/creating-actions/metadata-syntax-for-github-actions
