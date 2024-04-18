@@ -12,6 +12,11 @@ inputs:
   dist-folder:
     description: 'The folder containing the deployable files'
     required: true
+#| we want to show the generated url by AWS
+outputs:
+  website-url:
+    description: 'The Url of teh deployed website'
+    #* here we don't set the value instead we set it in the main.js
 
 runs:
   using: 'node20'

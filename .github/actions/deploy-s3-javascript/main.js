@@ -19,6 +19,11 @@ function run() {
   //# to prevent anonymous access and doing this, we need to get key and access key and pass from AWS
 
   core.notice('hello from my custom js action!');
+
+  //! the generated website url
+  const websiteUrl = `http://${bucket}.s3website-${bucketRegion}.amazonaws.com`;
+  core.setOutput('website-url', websiteUrl);
+  //| we use it in workflow
 }
 
 run();
