@@ -64,4 +64,11 @@ jobs:
         run: ls
       - name: Deploy site
         run: echo "Deploying..."
-##
+  Information: # |  and for using
+    runs-on: ubuntu-18.04
+    steps:
+      - name: Run custom js Action
+        uses: ./.github/actions/deploy-s3-javascript
+# so first action.yml , then main. js , and finally use it here
+
+#| the node modules folder in the deploy-s3-javascript is not ignored! because your custom JavaScript actions must include all the code and all the dependencies that are required to run this action successfully. GitHub Actions will not download and install dependencies when it encounters a custom JavaScript action. Instead it expects that all the code is available that's needed to run this custom JavaScript code and that includes the code for third-party actions.
