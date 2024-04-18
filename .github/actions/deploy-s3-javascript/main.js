@@ -16,6 +16,7 @@ function run() {
   const s3Uri = `s3://${bucket}`;
 
   exec.exec(`aws s3 sync ${distFolder} ${s3Uri} --region ${bucketRegion}`);
+  //# to prevent anonymous access and doing this, we need to get key and access key and pass from AWS
 
   core.notice('hello from my custom js action!');
 }
