@@ -15,7 +15,7 @@ jobs:
         with:
           caching: 'false'
       - name: Output Info
-        run: echo "Cache used? ${{steps.cache-deps.outputs}}" #| and as we know to get output , we set id in the step, and get the result of it
+        run: echo "Cache used? ${{steps.cache-deps.outputs.used-cache}}" #| and as we know to get output , we set id in the step, and get the result of it
       - name: Lint code
         run: npm run lint
   test:
