@@ -67,6 +67,8 @@ jobs:
   Information: # |  and for using
     runs-on: ubuntu-18.04
     steps:
+      - name: Get code
+        uses: actions/checkout@v3
       - name: Run custom js Action
         uses: ./.github/actions/deploy-s3-javascript
 # so first action.yml , then main. js , and finally use it here
