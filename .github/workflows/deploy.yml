@@ -64,32 +64,15 @@ jobs:
         run: ls
       - name: Deploy site
         id: deploy
-        uses: ./.github/actions/deploy-s3-javascript #| here we use the js custom action
+        uses: ./.github/actions/deploy-s3-docker
         env:
-          # AWS_ACCESS_KEY_ID: AKIAWRU4UZYWB266LQXDl # WE CAN ADD these values but this is bad approach best is using secret
-          # AWS_SECRET_ACCESS_KEY: VJAffJH2qnQGSd0Z8p3SWu3xZJozu74JTdNEyK1Q
-          AWS_ACCESS_KEY_ID: ${{secrets.AWS_ACCESS_KEY_ID}}
+          AWS_ACCESS_KEY_ID: ${{secrets.AWS_ACCESS_KEY_ID}} #| and these key must be ,to access to upload for AWS
           AWS_SECRET_ACCESS_KEY: ${{secrets.AWS_SECRET_ACCESS_KEY}}
-          #| these names are pre-defined in AWS , so AWS cli automnatically looking for them to authenticated the request
 
-        with: # we need to pass and fill the input vauels
+        with:
           bucket: gha—custom-action-hosting
           dist-folder: ./dist
-        # bucket-region: us—east-2  we can fill this if we want tochange othewise this have a default val
+
       - name: Output Information
         run: |
           echo "Live Url: ${{ steps.deploy.outputs.website-url }}"
-
-  # Information: # |  and for using
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - name: Get code
-  #       uses: actions/checkout@v3
-  #     - name: Run custom js Action
-  #       uses: ./.github/actions/deploy-s3-javascript
-
-# * so first action.yml , then main. js , and finally use it here
-
-#| the node modules folder in the deploy-s3-javascript is not ignored! because your custom JavaScript actions must include all the code and all the dependencies that are required to run this action successfully. GitHub Actions will not download and install dependencies when it encounters a custom JavaScript action. Instead it expects that all the code is available that's needed to run this custom JavaScript code and that includes the code for third-party actions.
-
-#* in git ignore /x means in root folder x , and x means any x folder

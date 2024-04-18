@@ -1,0 +1,23 @@
+name: 'Deploy to AWS S3'
+description: 'Deploy a static website via AWS S3'
+inputs:
+  bucket:
+    description: 'The S3 Bucket name'
+    required: true
+  bucket-region:
+    description: 'The region of S3 Bucket'
+    required: false
+    default: 'us-east-1'
+  dist-folder:
+    description: 'The folder containing the deployable files'
+    required: true
+outputs:
+  website-url:
+    description: 'The Url of teh deployed website'
+runs:
+  using: 'docker' #| to make it docker custom action
+  image: 'Dockerfile' #* or we can write an address of image in docker hub
+
+
+  #? https://docs.github.com/en/actions/creating-actions/metadata-syntax-for-github-actions#runs-for-docker-container-actions : more info
+#!  that's  important regarding inputs and outputs,the syntax is the same for Docker actions and JavaScript actions.
